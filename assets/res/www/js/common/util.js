@@ -229,5 +229,4 @@
     };
 
     window.__util__ = module;
-
 })();
