@@ -4,7 +4,7 @@
  * @date :
  */
 
-(function ($, M, MNet,SERVER_PATH, window) {
+(function ($, M, MNet, SERVER_PATH, window) {
   var page = {
     els: {
       $percent: null,
@@ -69,7 +69,7 @@
     },
   };
   window.__page__ = page;
-})(jQuery, M, __mnet__,__serverpath__, window);
+})(jQuery, M, __mnet__, __serverpath__, window);
 
 (function ($, M, pageFunc, window) {
   M.onReady(function () {

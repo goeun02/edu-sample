@@ -16,8 +16,6 @@
     initEvent: function initEvent(){
       // DOM Event 바인딩
     },
-    
-//    method: {},
   };
   window.__page__ = page;
 })(jQuery,M,window);
