@@ -36,15 +36,27 @@
       var self = this;
       this.els.$loginBtn.on('click', function () {
         self.login();
+      });
+      this.els.$findIdBtn.on('click', function() {
+        M.page.html('./findId.html');
+      });
+      this.els.$findPwBtn.on('click', function() {
+        M.page.html('./findPw1.html');
+      });
+      this.els.$joinBtn.on('click', function() {
+        M.page.html('./join1.html');
       })
     },
+
     setAutoLogin: function(id, pw){
       //자동로그인기능
       M.data.storage('AUTO_LOGIN_AUTH', {id: id, pw: pw});
     },
+
     unsetAutoLogin: function(id, pw){
       M.data.removeStorage('AUTO_LOGIN_AUTH');
     },
+    
     login: function () {
       var self = this;
       var id = this.els.$loginIdIpt.val().trim(); // 로그인 아이디 가져오기
@@ -53,6 +65,9 @@
 
       if (id == '') {
         return alert('아이디를 입력해주세요');
+      }
+      if (pw == '') {
+        return alert('비밀번호를 입력해주세요');
       }
 
       MNet.sendHttp({
@@ -64,6 +79,7 @@
         succ: function (data) {
           //로그인이 성공했을 때 콜백
           if(isAutoLogin) self.setAutoLogin(id, pw);
+          else self.unsetAutoLogin();
           M.page.html('./main.html');
         }
       });
