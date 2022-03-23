@@ -5,7 +5,7 @@ buildscript {
 	}
 	
 	dependencies {
-		classpath 'com.android.tools.build:gradle:4.0.1'
+		classpath 'com.android.tools.build:gradle:7.1.2'
 	}
 }
 
@@ -28,7 +28,7 @@ if (project.rootProject.file('local.properties').exists()) {
 
 android {
 	compileSdkVersion 30
-	//buildToolsVersion "30.0.3"
+	//buildToolsVersion "33.0.0 rc1"
 	useLibrary 'org.apache.http.legacy'
 	sourceSets {
 		main {
@@ -57,16 +57,13 @@ android {
 		minSdkVersion 14
 		targetSdkVersion 30
 	}
-	packagingOptions {
-		exclude "META-INF/LICENSE"
-		exclude "META-INF/DEPENDENCIES"
-	}	
-	lintOptions {
-		checkReleaseBuilds false
-		abortOnError false
-	}
-	
-	if (KEYSTORE_PATH?.trim()) {
+    packagingOptions {
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/DEPENDENCIES']
+        }
+    }
+
+    if (KEYSTORE_PATH?.trim()) {
 		signingConfigs{
 			releaseWithSignedKey {
 				storeFile file(KEYSTORE_PATH)
@@ -86,6 +83,10 @@ android {
 			}
 		}
 	}
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
 }
 
 //추가
